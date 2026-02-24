@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HemoVision AI – Clinical-grade AI-powered anemia detection and nutrition intelligence platform. Get instant anemia risk assessment and personalized diet plans.">
+    <title>HemoVision AI – Intelligent Anemia Detection & Nutrition Intelligence</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <!-- AOS Animation -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-pattern"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner-medical"></div>
+        <div class="loading-text">
+            Analyzing blood parameters<span class="loading-dots"></span>
+        </div>
+    </div>
+
+    <!-- ═══ Navbar ═══ -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <span class="brand-icon"><i class="bi bi-heart-pulse"></i></span>
+                HemoVision<span style="color: var(--secondary);">AI</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <i class="bi bi-list fs-4" style="color: var(--primary);"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#hero">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About AI</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#howItWorks">How It Works</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#assessment">Assessment</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#trust">Trust</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/admin"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ Hero Section ═══ -->
+    <section class="hero-section" id="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="hero-badge">
+                        <span class="pulse-dot"></span>
+                        Clinical Decision Support Tool
+                    </div>
+                    <h1 class="hero-title">
+                        Intelligent Anemia<br>
+                        <span class="gradient-text">Detection & Recovery</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Advanced AI-powered blood analysis combining ensemble machine learning,
+                        WHO clinical guidelines, and explainable AI to deliver precise anemia
+                        risk stratification with personalized nutrition intelligence.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#assessment" class="btn-primary-custom">
+                            <i class="bi bi-clipboard2-pulse"></i> Start Assessment
+                        </a>
+                        <a href="#about" class="btn-outline-custom">
+                            <i class="bi bi-info-circle"></i> Learn More
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <div class="stat-value">96%+</div>
+                            <div class="stat-label">Accuracy</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="stat-value">4</div>
+                            <div class="stat-label">AI Models</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="stat-value">7</div>
+                            <div class="stat-label">Parameters</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="stat-value">&lt;1s</div>
+                            <div class="stat-label">Response</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 hero-visual" data-aos="fade-left" data-aos-delay="200">
+                    <div class="hero-card-stack">
+                        <div class="hero-floating-card">
+                            <div class="card-header-row">
+                                <div class="card-icon blue"><i class="bi bi-cpu"></i></div>
+                                <div>
+                                    <div style="font-weight:700; font-size:0.9rem;">Ensemble AI Engine</div>
+                                    <div style="font-size:0.75rem; color:var(--text-muted);">4 ML Models Combined</div>
+                                </div>
+                            </div>
+                            <div class="mini-progress"><div class="bar" style="width:96%"></div></div>
+                        </div>
+                        <div class="hero-floating-card">
+                            <div class="card-header-row">
+                                <div class="card-icon green"><i class="bi bi-shield-check"></i></div>
+                                <div>
+                                    <div style="font-weight:700; font-size:0.9rem;">WHO Guidelines Aligned</div>
+                                    <div style="font-size:0.75rem; color:var(--text-muted);">Evidence-Based Classification</div>
+                                </div>
+                            </div>
+                            <div class="mini-progress"><div class="bar" style="width:100%"></div></div>
+                        </div>
+                        <div class="hero-floating-card">
+                            <div class="card-header-row">
+                                <div class="card-icon orange"><i class="bi bi-graph-up-arrow"></i></div>
+                                <div>
+                                    <div style="font-weight:700; font-size:0.9rem;">SHAP Explainability</div>
+                                    <div style="font-size:0.75rem; color:var(--text-muted);">Transparent AI Decisions</div>
+                                </div>
+                            </div>
+                            <div class="mini-progress"><div class="bar" style="width:88%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ About AI Section ═══ -->
+    <section id="about" class="text-center">
+        <div class="container">
+            <span class="section-badge"><i class="bi bi-stars"></i> About Our AI</span>
+            <h2 class="section-title" data-aos="fade-up">Powered by Advanced Machine Learning</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Our ensemble AI combines multiple algorithms for robust, clinical-grade anemia detection
+                with full explainability.
+            </p>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-card h-100">
+                        <div class="card-icon-lg"><i class="bi bi-diagram-3"></i></div>
+                        <h4>Ensemble Voting</h4>
+                        <p>Combines Logistic Regression, Random Forest, Gradient Boosting, and SVM for superior accuracy.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-card h-100">
+                        <div class="card-icon-lg"><i class="bi bi-eye"></i></div>
+                        <h4>Explainable AI</h4>
+                        <p>SHAP-based feature importance reveals exactly which parameters drive each prediction.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-card h-100">
+                        <div class="card-icon-lg"><i class="bi bi-hospital"></i></div>
+                        <h4>WHO Aligned</h4>
+                        <p>Severity classification follows World Health Organization hemoglobin thresholds.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="glass-card h-100">
+                        <div class="card-icon-lg"><i class="bi bi-egg-fried"></i></div>
+                        <h4>Diet Intelligence</h4>
+                        <p>Personalized iron-rich meal plans tailored to severity, pregnancy status, and budget.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ How It Works ═══ -->
+    <section id="howItWorks">
+        <div class="container">
+            <div class="text-center">
+                <span class="section-badge"><i class="bi bi-gear-wide-connected"></i> Process</span>
+                <h2 class="section-title" data-aos="fade-up">How It Works</h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                    Three simple steps to get your AI-powered anemia assessment and personalized recovery plan.
+                </p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-card step-card text-center h-100">
+                        <div class="step-number">1</div>
+                        <div class="step-connector d-none d-md-block"></div>
+                        <h4>Input Parameters</h4>
+                        <p>Enter your blood test values — hemoglobin, MCH, MCHC, MCV — along with gender and age.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-card step-card text-center h-100">
+                        <div class="step-number">2</div>
+                        <div class="step-connector d-none d-md-block"></div>
+                        <h4>AI Analysis</h4>
+                        <p>Our ensemble model analyzes 7 features with WHO cross-validation and SHAP explainability.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-card step-card text-center h-100">
+                        <div class="step-number">3</div>
+                        <h4>Results & Recovery</h4>
+                        <p>Receive severity classification, feature analysis, clinical recommendation, and a personalized diet plan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ Assessment Form Section ═══ -->
+    <section class="assessment-section" id="assessment">
+        <div class="container">
+            <div class="text-center">
+                <span class="section-badge"><i class="bi bi-clipboard2-pulse"></i> Assessment</span>
+                <h2 class="section-title" data-aos="fade-up">Anemia Risk Assessment</h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                    Enter your blood test parameters for instant AI-powered analysis.
+                </p>
+            </div>
+
+            <div class="form-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="form-header">
+                    <h3><i class="bi bi-heart-pulse" style="color:var(--primary)"></i> Clinical Parameters</h3>
+                    <p>All fields are required for accurate prediction</p>
+                </div>
+
+                {% if error %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-triangle me-2"></i>{{ error }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                {% endif %}
+
+                <form id="assessmentForm" method="POST" action="/predict" novalidate>
+                    <div class="row">
+                        <!-- Gender -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label><span class="label-icon">👤</span> Gender</label>
+                                <select class="form-select" id="gender" name="gender" required>
+                                    <option value="0">Male</option>
+                                    <option value="1">Female</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Age -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label><span class="label-icon">🎂</span> Age</label>
+                                <input type="number" class="form-control" id="age" name="age"
+                                       placeholder="e.g., 35" min="1" max="120" required>
+                                <div class="invalid-feedback">Age must be between 1 and 120</div>
+                                <div class="form-text">Years (1 – 120)</div>
+                            </div>
+                        </div>
+
+                        <!-- Hemoglobin -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label><span class="label-icon">🩸</span> Hemoglobin (g/dL)</label>
+                                <input type="number" step="0.1" class="form-control" id="hemoglobin" name="hemoglobin"
+                                       placeholder="e.g., 12.5" min="2" max="25" required>
+                                <div class="invalid-feedback">Hemoglobin must be between 2 and 25 g/dL</div>
+                                <div class="form-text">Normal: Male 13.5–17.5, Female 12.0–16.0</div>
+                            </div>
+                        </div>
+
+                        <!-- MCH -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label><span class="label-icon">🔬</span> MCH (pg)</label>
+                                <input type="number" step="0.1" class="form-control" id="mch" name="mch"
+                                       placeholder="e.g., 29" min="10" max="45" required>
+                                <div class="invalid-feedback">MCH must be between 10 and 45 pg</div>
+                                <div class="form-text">Normal range: 27–33 pg</div>
+                            </div>
+                        </div>
+
+                        <!-- MCHC -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label><span class="label-icon">🧪</span> MCHC (g/dL)</label>
+                                <input type="number" step="0.1" class="form-control" id="mchc" name="mchc"
+                                       placeholder="e.g., 34" min="20" max="42" required>
+                                <div class="invalid-feedback">MCHC must be between 20 and 42 g/dL</div>
+                                <div class="form-text">Normal range: 32–36 g/dL</div>
+                            </div>
+                        </div>
+
+                        <!-- MCV -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label><span class="label-icon">📊</span> MCV (fL)</label>
+                                <input type="number" step="0.1" class="form-control" id="mcv" name="mcv"
+                                       placeholder="e.g., 88" min="40" max="120" required>
+                                <div class="invalid-feedback">MCV must be between 40 and 120 fL</div>
+                                <div class="form-text">Normal range: 80–100 fL</div>
+                            </div>
+                        </div>
+
+                        <!-- Pregnancy -->
+                        <div class="col-md-6" id="pregnantGroup" style="display:none;">
+                            <div class="form-group">
+                                <label><span class="label-icon">🤰</span> Pregnancy Status</label>
+                                <select class="form-select" id="pregnant" name="pregnant">
+                                    <option value="0">Not Pregnant</option>
+                                    <option value="1">Pregnant</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <i class="bi bi-cpu"></i> Analyze with AI
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ Result Section (populated via AJAX or page render) ═══ -->
+    <section id="resultSection" class="result-section">
+        {% if result %}
+        {% include 'partials/result_content.html' %}
+        {% endif %}
+    </section>
+
+    <!-- ═══ Trust Section ═══ -->
+    <section id="trust">
+        <div class="container">
+            <div class="text-center">
+                <span class="section-badge"><i class="bi bi-shield-check"></i> Trust & Safety</span>
+                <h2 class="section-title" data-aos="fade-up">Built for Clinical Confidence</h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                    Transparency, accuracy, and evidence-based methodology at every step.
+                </p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="trust-card h-100">
+                        <div class="trust-icon">🎯</div>
+                        <h5>Model Accuracy</h5>
+                        <div class="trust-metric">96%+</div>
+                        <p>Cross-validated ensemble performance</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="trust-card h-100">
+                        <div class="trust-icon">🔬</div>
+                        <h5>Explainable AI</h5>
+                        <div class="trust-metric">SHAP</div>
+                        <p>Full feature importance transparency</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="trust-card h-100">
+                        <div class="trust-icon">🏥</div>
+                        <h5>WHO Aligned</h5>
+                        <div class="trust-metric">2024</div>
+                        <p>Latest WHO hemoglobin guidelines</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="trust-card h-100">
+                        <div class="trust-icon">🛡️</div>
+                        <h5>Data Privacy</h5>
+                        <div class="trust-metric">100%</div>
+                        <p>No data stored, processed locally</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ Footer ═══ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="medical-disclaimer">
+                <span class="disclaimer-icon">⚠️</span>
+                <div>
+                    <strong>Medical Disclaimer:</strong> HemoVision AI is a Clinical Decision Support Tool designed for
+                    educational and screening purposes only. It does not replace professional medical diagnosis.
+                    Always consult a qualified healthcare provider for medical decisions. AI predictions should be
+                    validated with laboratory confirmation.
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5><i class="bi bi-heart-pulse" style="color:var(--secondary)"></i> HemoVision AI</h5>
+                    <p>Intelligent Anemia Detection & Nutrition Intelligence Platform. Powered by ensemble machine learning and WHO clinical guidelines.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="#hero"><i class="bi bi-chevron-right"></i> Home</a></li>
+                        <li><a href="#assessment"><i class="bi bi-chevron-right"></i> Assessment</a></li>
+                        <li><a href="/diet"><i class="bi bi-chevron-right"></i> Diet Plans</a></li>
+                        <li><a href="/admin"><i class="bi bi-chevron-right"></i> Admin Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Data Sources</h5>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="bi bi-chevron-right"></i> WHO Hemoglobin Guidelines</a></li>
+                        <li><a href="#"><i class="bi bi-chevron-right"></i> NIH Iron Intake Reference</a></li>
+                        <li><a href="#"><i class="bi bi-chevron-right"></i> CDC Anemia Classification</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom text-center">
+                <p style="font-size:0.85rem; margin:0;">
+                    &copy; 2024 HemoVision AI | Clinical Decision Support Tool | Built with 🤖 AI & ❤️
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

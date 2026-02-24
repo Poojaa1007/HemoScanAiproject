@@ -1,0 +1,141 @@
+<!-- Result Content Partial – used both inline and via AJAX -->
+<div class="container" data-aos="fade-up">
+    <div class="text-center mb-4">
+        <span class="section-badge"><i class="bi bi-activity"></i> AI Analysis</span>
+        <h2 class="section-title">Assessment Results</h2>
+    </div>
+
+    <div class="result-card">
+        <!-- Severity Header -->
+        <div class="result-header severity-{{ result.severity_level|lower|replace(' ', '-')|replace('anemia', '')|trim('-') }}
+            {% if result.severity_index == 0 %}severity-normal
+            {% elif result.severity_index == 1 %}severity-mild
+            {% elif result.severity_index == 2 %}severity-moderate
+            {% else %}severity-severe{% endif %}">
+
+            <div class="severity-badge">
+                {% if result.severity_index == 0 %}✅
+                {% elif result.severity_index == 1 %}⚠️
+                {% elif result.severity_index == 2 %}🔶
+                {% else %}🚨{% endif %}
+                {{ result.severity_level }}
+            </div>
+
+            <!-- Confidence Ring -->
+            <div class="confidence-ring">
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                    <circle class="ring-bg" cx="60" cy="60" r="50" />
+                    <circle class="ring-fill" cx="60" cy="60" r="50" data-confidence="{{ result.confidence_score }}" />
+                </svg>
+                <div class="confidence-text">
+                    <div class="confidence-value">{{ result.confidence_score }}%</div>
+                    <div class="confidence-label">Confidence</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result Body -->
+        <div class="result-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    <!-- Classifications -->
+                    <div class="result-detail-card">
+                        <h5><i class="bi bi-cpu"></i> AI Classification</h5>
+                        <p>
+                            <span class="badge-severity
+                                {% if result.severity_index == 0 %}badge-normal
+                                {% elif result.severity_index == 1 %}badge-mild
+                                {% elif result.severity_index == 2 %}badge-moderate
+                                {% else %}badge-severe{% endif %}">
+                                {{ result.ai_classification }}
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="result-detail-card">
+                        <h5><i class="bi bi-hospital"></i> WHO Classification</h5>
+                        <p>
+                            <span class="badge-severity
+                                {% if result.severity_index == 0 %}badge-normal
+                                {% elif result.severity_index == 1 %}badge-mild
+                                {% elif result.severity_index == 2 %}badge-moderate
+                                {% else %}badge-severe{% endif %}">
+                                {{ result.who_classification }}
+                            </span>
+                        </p>
+                    </div>
+
+                    <!-- Clinical Explanation -->
+                    {% if result.explanation %}
+                    <div class="result-detail-card">
+                        <h5><i class="bi bi-info-circle"></i> Clinical Explanation</h5>
+                        <p>{{ result.explanation }}</p>
+                    </div>
+                    {% endif %}
+
+                    <!-- Recommendation -->
+                    <div class="result-detail-card" style="border-left-color: var(--success);">
+                        <h5 style="color:var(--success)"><i class="bi bi-check-circle"></i> Recommendation</h5>
+                        <p>{{ result.recommendation }}</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <!-- SHAP Chart -->
+                    <div class="chart-container">
+                        <h5><i class="bi bi-bar-chart-line"></i> Feature Importance (SHAP)</h5>
+                        <div style="height: 280px;">
+                            <canvas id="shapChart" data-features='{{ result.feature_importance | tojson }}'>
+                            </canvas>
+                        </div>
+                    </div>
+
+                    <!-- Top Influencing Features -->
+                    {% if result.top_features %}
+                    <div class="result-detail-card" style="border-left-color: var(--info);">
+                        <h5 style="color:var(--info)"><i class="bi bi-stars"></i> Top Influencing Parameters</h5>
+                        {% for feat in result.top_features %}
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span style="font-weight:600; font-size:0.9rem;">{{ feat.name }}</span>
+                            <span class="badge-severity badge-mild" style="font-size:0.8rem;">{{ feat.importance
+                                }}%</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <!-- Probability Distribution -->
+                    {% if result.probabilities %}
+                    <div class="result-detail-card">
+                        <h5><i class="bi bi-pie-chart"></i> Probability Distribution</h5>
+                        {% for label, prob in result.probabilities.items() %}
+                        <div class="mb-2">
+                            <div class="d-flex justify-content-between" style="font-size:0.85rem;">
+                                <span>{{ label }}</span>
+                                <span style="font-weight:700;">{{ prob }}%</span>
+                            </div>
+                            <div class="progress-bar-custom">
+                                <div class="fill" data-width="{{ prob }}" style="width:0%"></div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons justify-content-center">
+                <a href="/diet" class="action-btn primary">
+                    <i class="bi bi-egg-fried"></i> View Diet Plan
+                </a>
+                <a href="/diet/pdf" class="action-btn">
+                    <i class="bi bi-file-earmark-pdf"></i> Download PDF
+                </a>
+                <a href="#assessment" class="action-btn">
+                    <i class="bi bi-arrow-clockwise"></i> New Assessment
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
