@@ -237,13 +237,9 @@
                     <p>All fields are required for accurate prediction</p>
                 </div>
 
-                {% if error %}
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <i class="bi bi-exclamation-triangle me-2"></i>{{ error }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <div class="alert alert-danger d-none" id="errorBox">
+                    Sample error message preview
                 </div>
-                {% endif %}
-
                 <form id="assessmentForm" method="POST" action="/predict" novalidate>
                     <div class="row">
                         <!-- Gender -->
@@ -334,11 +330,11 @@
 
     <!-- ═══ Result Section (populated via AJAX or page render) ═══ -->
     <section id="resultSection" class="result-section">
-        {% if result %}
-        {% include 'partials/result_content.html' %}
-        {% endif %}
+        <div class="container text-center">
+            <h2>Result Preview</h2>
+            <p>This is a static preview version. Backend AI will work when deployed with Flask.</p>
+        </div>
     </section>
-
     <!-- ═══ Trust Section ═══ -->
     <section id="trust">
         <div class="container">
@@ -438,4 +434,5 @@
     <script src="static/js/main.js"></script>
 </body>
 </html>
+
 
